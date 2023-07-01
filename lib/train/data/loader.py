@@ -1,9 +1,11 @@
 import torch
 import torch.utils.data.dataloader
 import importlib
-import collections
-from torch._six import string_classes
+import collections.abc
+# from torch._six import string_classes
 from lib.utils import TensorDict, TensorList
+int_classes = int
+string_classes = str
 
 if float(torch.__version__[:3]) >= 1.9 or len('.'.join((torch.__version__).split('.')[0:2])) > 3:
     int_classes = int
@@ -108,12 +110,12 @@ def ltr_collate_stack1(batch):
         return batch
     elif isinstance(batch[0], TensorDict):
         return TensorDict({key: ltr_collate_stack1([d[key] for d in batch]) for key in batch[0]})
-    elif isinstance(batch[0], collections.Mapping):
+    elif isinstance(batch[0], collections.abc.Mapping):
         return {key: ltr_collate_stack1([d[key] for d in batch]) for key in batch[0]}
     elif isinstance(batch[0], TensorList):
         transposed = zip(*batch)
         return TensorList([ltr_collate_stack1(samples) for samples in transposed])
-    elif isinstance(batch[0], collections.Sequence):
+    elif isinstance(batch[0], collections.abc.Sequence):
         transposed = zip(*batch)
         return [ltr_collate_stack1(samples) for samples in transposed]
     elif batch[0] is None:
