@@ -4,6 +4,8 @@ import importlib
 import collections.abc
 # from torch._six import string_classes
 from lib.utils import TensorDict, TensorList
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning)
 int_classes = int
 string_classes = str
 
