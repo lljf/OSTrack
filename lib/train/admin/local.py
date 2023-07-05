@@ -2,7 +2,7 @@ class EnvironmentSettings:
     def __init__(self):
         self.workspace_dir = '/kaggle/working/OStrack'    # Base directory for saving network checkpoints.
         self.tensorboard_dir = '/kaggle/working/OStrack/tensorboard'    # Directory for tensorboard files.
-        self.pretrained_networks = '/kaggle/working/OStrack/pretrained_networks'
+        self.pretrained_networks = '/kaggle/working/OStrack-1/pretrained_networks'
         self.lasot_dir = '/kaggle/working/OStrack/data/lasot'
         self.got10k_dir = '/kaggle/input/got10k/train'
         self.got10k_val_dir = '/kaggle/working/OStrack/data/got10k/val'
